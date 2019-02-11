@@ -1,0 +1,43 @@
+#!/bin/bash
+
+if [ $1 = 'run' ]
+then cmd="sudo mongod --fork --syslog --dbpath=/var/lib/mongodb"
+# Change mongo dbname
+elif [ $1 = 'dropdb' ]
+then cmd="mongo templateMongoDB --eval 'db.dropDatabase()'"
+
+elif [ $1 = 'dockrun' ]
+then cmd="docker start db"
+
+elif [ $1 = 'status' ]
+then cmd="docker ps -f name=db"
+
+elif [ $1 = 'stop' ]
+then cmd="docker stop db"
+
+elif [ $1 = 'delete' ]
+then cmd="docker rm db"
+
+elif [ $1 = 'create' ]
+then cmd="docker create --name db -p 27017:27017 -v mongo:/data/db -e TZ=Asia/Singapore mongo"
+
+elif [ $1 = 'help' ]
+then
+  echo Commands:
+  echo run: run mongodb locally
+  echo dropdb: drop local database
+  echo dockrun: start mongodb
+  echo status: check docker status
+  echo stop: stop dockers from running
+  echo delete: delete mongodb
+  echo create: create mongodb
+  exit
+
+else
+  echo Command \"$1\" not found.
+  exit
+fi
+
+echo Running command \"$1\".
+echo "$" $cmd
+eval $cmd

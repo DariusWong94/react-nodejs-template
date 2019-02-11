@@ -1,0 +1,23 @@
+.vagrant/
+Vagrantfile.local
+
+# APP
+node_modules
+build/
+data/
+uploads/
+mongo/
+data/
+stats.json
+package-lock.json
+
+# Other
+*.log
+*.db
+.idea
+.DS_Store
+*.map
+.sass-cache/*
+.TemporaryItems/*
+.swp
+.vscode

@@ -1,0 +1,23 @@
+# Stage 1: Build project
+
+FROM node AS builder
+
+WORKDIR /app/client
+
+COPY package.json /app/client
+
+COPY yarn.lock /app/client
+
+RUN yarn install
+
+COPY . /app/client
+
+RUN yarn run publish
+
+# Stage 2: Run
+
+FROM nginx
+
+COPY --from=builder /app/client/dist /usr/share/nginx/html
+
+EXPOSE 80

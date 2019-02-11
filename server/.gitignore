@@ -1,0 +1,17 @@
+# APP
+node_modules
+build/
+data/
+uploads/
+stats.json
+package-lock.json
+yarn.lock
+
+# Other
+*.log
+*.db
+.idea
+.DS_Store
+*.map
+.sass-cache/*
+.TemporaryItems/*

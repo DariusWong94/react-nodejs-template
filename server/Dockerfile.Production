@@ -1,0 +1,17 @@
+# Stage 1 : Build
+
+FROM node:latest
+
+WORKDIR /app/server
+
+COPY package.json yarn.lock /app/server/
+
+RUN yarn install
+
+COPY . /app/server/
+
+ENV NODE_ENV=production
+
+EXPOSE 5000
+
+ENTRYPOINT ["yarn", "dev"]
